@@ -1,0 +1,9 @@
+{
+  "mongoUrl": "mongodb://test:password1@ds217921.mlab.com:17921/nyc-mta-gtfs",
+  "agencies": [
+    {
+      "agency_key": "nycMta",
+      "path": "./data/GTFS.zip"
+    }
+  ]
+}
