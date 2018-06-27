@@ -3,7 +3,8 @@
   "agencies": [
     {
       "agency_key": "nycMta",
-      "path": "./data/GTFS.zip"
+      "path": "./data/GTFS.zip",
+      "exclude": ["shapes", "stop_times"]
     }
   ]
 }
