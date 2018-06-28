@@ -42,6 +42,7 @@ class Map extends Component {
             closeOnClick={true}
           >
             <div className="popupText">{this.state.popupInfo.stop_name}</div>
+            <div className="popupId">{this.state.popupInfo.stop_id}</div>
           </Popup>
         </div>
       )
