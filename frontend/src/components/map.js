@@ -24,6 +24,9 @@ class Map extends Component {
       popupInfo: null
     };
   }
+
+  //render the popup at the pin location when the popinfo is populated in the state
+
   renderPopup = () => {
     return (
       this.state.popupInfo && (
@@ -43,6 +46,9 @@ class Map extends Component {
       )
     );
   };
+
+  //get popup info by id and update popupinfo in the state when a user clicks on a pin
+
   updatePopupInfo = e => {
     fetch("/getStop/" + e.target.parentNode.id, {
       method: "GET"
@@ -55,6 +61,8 @@ class Map extends Component {
         console.log(err);
       });
   };
+
+  //renders all stop markers when the map component renders
 
   renderMarkers = (stop, i) => {
     return (
@@ -71,6 +79,8 @@ class Map extends Component {
       </Marker>
     );
   };
+  
+  //scales map size to window size
 
   adjustView = () => {
     let newViewWid = Math.max(window.innerWidth || 0);
@@ -85,6 +95,8 @@ class Map extends Component {
       }
     });
   };
+
+  //checks if window size changes to adjust viewport
 
   componentDidMount = () => {
     window.addEventListener("resize", this.adjustView);

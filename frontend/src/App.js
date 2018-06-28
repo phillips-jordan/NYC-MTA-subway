@@ -1,39 +1,47 @@
-import React, { Component } from 'react';
-import Map from './components/map.js';
-import { ScaleLoader } from 'react-spinners';
-import './App.css';
-
+import React, { Component } from "react";
+import Map from "./components/map.js";
+import { ScaleLoader } from "react-spinners";
+import "./App.css";
 
 class App extends Component {
-  constructor(){
+  constructor() {
     super();
-    this.state={
+    this.state = {
       loading: true,
       stops: []
-    }
+    };
   }
-  componentDidMount = () =>{
-    fetch('/getAllStops',{
-      method: 'GET'
+
+  // sends http request to get stop information from database
+
+  componentDidMount = () => {
+    fetch("/getAllStops", {
+      method: "GET"
     })
-    .then(res=>res.json())
-    .then(res=>{
-      this.setState({stops:res, loading: false})
-    })
-    .catch(err=>console.log(err))
-  }
+      .then(res => res.json())
+      .then(res => {
+        this.setState({ stops: res, loading: false });
+      })
+      .catch(err => console.log(err));
+  };
   render() {
-    return <div>
+    return (
+      <div>
         {this.state.loading ? (
-          <div className='loader'><ScaleLoader
-            height={100} width={4} margin='5px'
-            color="#5998ff"
-            loading={this.state.loading}
-          /></div>
+          <div className="loader">
+            <ScaleLoader
+              height={100}
+              width={4}
+              margin="5px"
+              color="#5998ff"
+              loading={this.state.loading}
+            />
+          </div>
         ) : (
           <Map stops={this.state.stops} />
         )}
-      </div>;
+      </div>
+    );
   }
 }
 

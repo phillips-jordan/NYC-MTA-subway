@@ -7,7 +7,7 @@ const url = config.mongoUrl;
 const app = express();
 
 
-//used mongoose to import the GTFS data
+////used mongoose to import the GTFS data to db
 
 // mongoose.connect(config.mongoUrl);
 
