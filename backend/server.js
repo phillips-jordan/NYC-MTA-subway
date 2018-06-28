@@ -22,6 +22,10 @@ const app = express();
 // });
 
 
+
+
+//Get all stops on Map load
+
 app.get('/getAllStops', (req, res)=>{
 MongoClient.connect(
   url,
@@ -30,15 +34,36 @@ MongoClient.connect(
     let dbo = db.db("nyc-mta-gtfs");
     dbo.collection("stops").find({}).toArray((err, ret)=>{
         if (err) throw err;
-        console.log(ret)
-        res.send(ret)
+        res.send(JSON.stringify(ret))
         db.close();
     })
   }
 )}
 )
 
+//Get one stop by stop id
 
-app.listen(3000, ()=>{
-      console.log('listening on 3000')
+app.get("/getStop/:id", (req, res) => {
+  let id = req.params.id  
+  MongoClient.connect(
+    url,
+    (err, db) => {
+      if (err) throw err;
+      let dbo = db.db("nyc-mta-gtfs");
+      let query = {stop_id: id}
+      dbo
+        .collection("stops")
+        .findOne(query, (err, ret) => {
+          if (err) throw err;
+          res.send(JSON.stringify(ret));
+          db.close();
+        });
+    }   
+  );
+});
+
+
+
+app.listen(4000, ()=>{
+      console.log('listening on 4000')
   })

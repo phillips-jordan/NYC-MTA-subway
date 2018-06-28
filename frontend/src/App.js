@@ -18,26 +18,22 @@ class App extends Component {
     })
     .then(res=>res.json())
     .then(res=>{
-      console.log(res)
       this.setState({stops:res, loading: false})
     })
     .catch(err=>console.log(err))
   }
   render() {
-    return (
-      <div>
-        {this.state.loading?
-        <ScaleLoader
-          color='#828282'
-          loading={this.state.loading}
-        />
-        :
-        <Map
-        stops={this.state.stops}
-        />
-        }
-      </div>
-    );
+    return <div>
+        {this.state.loading ? (
+          <div className='loader'><ScaleLoader
+            height={100} width={4} margin='5px'
+            color="#5998ff"
+            loading={this.state.loading}
+          /></div>
+        ) : (
+          <Map stops={this.state.stops} />
+        )}
+      </div>;
   }
 }
 
