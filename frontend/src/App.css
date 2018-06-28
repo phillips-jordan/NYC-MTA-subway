@@ -10,6 +10,7 @@ body {
   width: 70px;
   margin: 0 auto;
   top: 38vh;
+  z-index: 99;
 }
 
 .nav {
@@ -27,8 +28,44 @@ body {
   color: rgb(43, 43, 43);
   background-color: #5998ff;
   border-radius: 0px 0px 0px 5px;
-  margin-right: 10vw;
 }
 .popupText {
+  margin-top:1vh; 
+  margin-right: 1vw;
   min-width: 10vw;
+}
+
+.pin {
+  transition: all 0.9s ease-in-out;
+  animation: fadein 6s, pindrop 2.6s;
+}
+button{
+transition: all 0.3s ease-in;
+}
+
+button:focus{
+  outline: none;
+}
+
+button:hover{
+  border-radius: 0px 0px 0px 4px;
+  background: rgb(216, 95, 95) !important;
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes pindrop {
+  0% {
+    transform: translateY(-300%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
 }

@@ -19,9 +19,10 @@ class Map extends Component {
         height: viewHei,
         latitude: 40.7527,
         longitude: -73.9772,
-        zoom: 12
+        zoom: 13
       },
-      popupInfo: null
+      popupInfo: null,
+      mapLoad: false
     };
   }
 
@@ -74,7 +75,7 @@ class Map extends Component {
         offsetLeft={0}
       >
         <span onClick={this.updatePopupInfo}>
-          <Pin id={stop.stop_id} />
+          <Pin id={stop.stop_id} zoom={this.state.viewport.zoom} />
         </span>
       </Marker>
     );
@@ -111,9 +112,10 @@ class Map extends Component {
         onViewportChange={viewport => {
           this.setState({ viewport });
         }}
+        onLoad={()=>{setTimeout(()=>this.setState({ mapLoad: true }), 300);}}
       >
         {this.renderPopup()}
-        {this.props.stops.map(this.renderMarkers)}
+        {this.state.mapLoad?this.props.stops.map(this.renderMarkers):null}
       </MapGL>
     );
   }
